@@ -29,28 +29,24 @@
         }
 ```
 ```js
-        <script>
+    <script>
         let PreviousWSY=0;
-        document.addEventListener("scroll", function() {
+        let header = document.querySelector(".header"); //将获取头尾元素的语句放在了函数外面，免得每一次滚动都去拿一下元素，直接提前拿出来，仅仅进行动态类的操作即可，之前这段script在html之前，会报Cannot read property 'classList' of null错误，在元素加载完成之前进行了引用，所以找不到。
+        let footer = document.querySelector(".footer");
+        document.addEventListener("scroll",handle); 
 
-            var header = document.querySelector(".header");
-            var footer = document.querySelector(".footer");
-
+        // 滚动显示和隐藏的处理函数
+        function handle() {
             let NowWSY=window.scrollY;
             if(NowWSY>PreviousWSY){
-                // header.style.top="-50px";  
-                // header.setAttribute("class","header-actived");不能这样用，否则将会吧原来的类值给覆盖掉。
-                // footer.style.bottom="-50px";  
                 header.classList.add("header-actived");
                 footer.classList.add("footer-actived");
             }else{
-                // header.style.top="0px";
-                // footer.style.bottom="0px";
                 header.classList.remove("header-actived");
                 footer.classList.remove("footer-actived");
             }
             PreviousWSY=NowWSY;
-        });
+        };
         </script>
 ```
 > 有关样式类的设置和读取的知识，见博客https://blog.csdn.net/qq_39207948/article/details/84943450
