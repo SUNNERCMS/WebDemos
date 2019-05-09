@@ -1,4 +1,3 @@
-# WebProject
-前端之路中的demo，厚积薄发，后期会持续更新。。。  
-1.[焦点自动轮播滑动切换](https://github.com/SUNNERCMS/WebProject/tree/master/Focus%20rotation)  
-2.[头尾栏滚动隐藏和显示](https://github.com/SUNNERCMS/WebDemos/tree/master/2.Header%20Hide%20And%20Show)
+## 版本说明
+1-2：完成了头尾栏滚动隐藏和显示的功能  
+3：完成了index.html页面通过JQUERY的ajax调用虚拟mock数据，用nodejs搭建了http-server.
