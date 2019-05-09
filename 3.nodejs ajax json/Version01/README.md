@@ -25,7 +25,7 @@ function onRequest(request, response){
 http.createServer(onRequest).listen(8888);
 console.log("Server has started.port on 8888\n");
 ```
-1、`Content-Type":'application/json'`：用来设置返回的文件内容类型，并告知浏览器，这里设置为了JSON格式，这样index.html中用来处理数据时，就不用进行反序列化处理了，可以直接用返回的数据。如果设置为text/plan形式，则返回的数据时字符串格式，ajax拿到返回的数据后还需要通过JSON.parse()进行反序列化处理，即将字符串转换为对象。
+1、`Content-Type":'application/json'`：用来设置返回的文件内容类型，并告知浏览器，这里设置为了JSON格式，这样index.html中用来处理数据时，就不用进行反序列化处理了，可以直接用返回的数据。如果设置为text/plan形式，则返回的数据时字符串格式，ajax拿到返回的数据后还需要通过JSON.parse()进行反序列化处理，即将字符串转换为对象。  
 2、`http.createServer(onRequest).listen(8888);`由require中nodejs中的http模块中的createServer来创建本地服务器，并设置监听端口号；
 #### 浏览器端代码 index.html
 ```html
