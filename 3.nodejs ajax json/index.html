@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>nodejs</title>
+
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+
+</head>
+<body>
+
+    <div id="feeds"></div>
+    <div id="id"></div>
+    <div id="name"></div>
+    <div id="arg"></div>
+    
+    <span>ddddd</span>
+    <button onclick="handle()">点击触发ajax</button>
+    <script>
+        function handle(){
+            $.ajax({
+            url:   "http://localhost:8888/",
+            type: "GET",
+            dataType: "json", 
+            success: function(data){
+                $("#id").html("编号："+data.id);
+                $("#name").html("姓名："+data.name);
+                $("#arg").html("年龄："+data.arg);
+                $("#feeds").html(data.remark);
+            },
+            error: function(err){
+                alert(err);
+            }
+        }); 
+    }
+    </script>
+</body>
+</html>
