@@ -1,52 +1,73 @@
-### Version2
-#### 优化
-1、针对Version1中改变样式属性引起的重排和重绘问题，这里采用了添加和删除类的方式进行了优化.  
-2、将获取头尾元素的语句放在了函数外面，免得每一次滚动都去拿一下元素，直接提前拿出来，仅仅进行动态类的操作即可，之前这段script在html之前，会报Cannot read property 'classList' of null错误，在元素加载完成之前进行了引用，所以找不到。  
-3、对滚动显示和隐藏的处理操作进行了函数封装
-#### 代码分析
-```css
-        .header,.footer{
-            position: fixed;
-            display: block;
-            width: 100%;
-            height: 50px;
-            background-color: darkkhaki;
-            z-index: 9;
-        }
-        .header {
-            top:0px;
-            transition:top 45ms linear;
-        }
-        .header-actived{
-            top:-50px;
-        }
-        .footer{
-            bottom:0px;
-            transition:bottom 45ms linear;
-        }
-        .footer-actived{
-            bottom:-50px;
-        }
-```
-```js
-    <script>
-        let PreviousWSY=0;
-        let header = document.querySelector(".header"); //将获取头尾元素的语句放在了函数外面，免得每一次滚动都去拿一下元素，直接提前拿出来，仅仅进行动态类的操作即可，之前这段script在html之前，会报Cannot read property 'classList' of null错误，在元素加载完成之前进行了引用，所以找不到。
-        let footer = document.querySelector(".footer");
-        document.addEventListener("scroll",handle); 
+### Version01
+#### 服务器端代码server.js
+```JS
+var http = require("http");
+var fs = require("fs");
+//服务器监听函数，只要8888端口接收到请求就会触发这个回调函数
+function onRequest(request, response){
+  console.log("Request received.");
+  // 用来异步读取data.json文件中的内容
+  fs.readFile("data.json",function(error,file){
+    if(error){
+        response.writeHead(500,{"Content-Type":'application/json','charset':'utf-8','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'PUT,POST,GET,DELETE,OPTIONS'});//可以解决跨域的请求
+        response.write(error+'\n');
+        response.end();
+    }else{
+        response.writeHead(200,{"Content-Type":'application/json','charset':'utf-8','Access-Control-Allow-Origin':'*','Access-Control-Allow-Methods':'PUT,POST,GET,DELETE,OPTIONS'});//可以解决跨域的请求
+        response.write(file);
+        response.end();
+        console.log("fanhui:"+file);
+        console.log(typeof file);
+    }
+});
+}
 
-        // 滚动显示和隐藏的处理函数
-        function handle() {
-            let NowWSY=window.scrollY;
-            if(NowWSY>PreviousWSY){
-                header.classList.add("header-actived");
-                footer.classList.add("footer-actived");
-            }else{
-                header.classList.remove("header-actived");
-                footer.classList.remove("footer-actived");
-            }
-            PreviousWSY=NowWSY;
-        };
-        </script>
+http.createServer(onRequest).listen(8888);
+console.log("Server has started.port on 8888\n");
 ```
-> 有关样式类的设置和读取的知识，见博客https://blog.csdn.net/qq_39207948/article/details/84943450
+1、`Content-Type":'application/json'`：用来设置返回的文件内容类型，并告知浏览器，这里设置为了JSON格式，这样index.html中用来处理数据时，就不用进行反序列化处理了，可以直接用返回的数据。如果设置为text/plan形式，则返回的数据时字符串格式，ajax拿到返回的数据后还需要通过JSON.parse()进行反序列化处理，即将字符串转换为对象。
+2、`http.createServer(onRequest).listen(8888);`由require中nodejs中的http模块中的createServer来创建本地服务器，并设置监听端口号；
+#### 浏览器端代码 index.html
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>nodejs</title>
+
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+    </script>
+
+</head>
+<body>
+
+    <div id="feeds"></div>
+    <div id="id"></div>
+    <div id="name"></div>
+    <div id="arg"></div>
+    
+    <div>上文显示回调内容</div>
+    <button onclick="handle()">点击触发ajax</button>
+    <script>
+        function handle(){
+            $.ajax({
+            url     : "http://localhost:8888/", //这里直接用的端口
+            type    : "GET",
+            dataType: "json",  //预期服务器返回的数据类型
+            success : function(data){
+                $("#id").html("编号："+data.id);
+                $("#name").html("姓名："+data.name);
+                $("#arg").html("年龄："+data.arg);
+                $("#feeds").html(data.remark);
+            },
+            error   : function(err){
+                alert(err);
+            }
+        }); 
+    }
+    </script>
+</body>
+</html>
+```
+
