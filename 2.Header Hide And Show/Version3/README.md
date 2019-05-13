@@ -4,6 +4,7 @@
 （2）使用Ajax进了后台访问数据，并将模拟的后台数据以JSON的格式返回。  
 （3）使用了Handlebars模板引擎，对返回的后台数据进行了处理。
 #### 代码分析
+##### 使用NodeJS建立服务器
 1、index.js：作为主文件用于启动。主要是设置路径的配对规则，并用对象形式保存，然后将该规则和路由函数一起发给服务器函数。
 ```JS
         var server=require("./server"); //这里调用其他模块时，注意是相对引用路径
@@ -72,4 +73,65 @@
 
 ```
 > "Content-Type":'application/json'直接将文本内容作为JSON格式输出。
-
+##### 使用handlebars处理返回的数据
+```html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>JS Hide/Show Header&Footer On Scroll</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
+        <!-- 通过CDN引用的handlebars模板库 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    </head>
+    <body>
+        <div id="global">
+            <div class="header" >
+                <p id="header-text">My Header</p>
+            </div>
+            <div id="content">
+                handlebars模板
+            </div>
+            <div class="footer">
+                <p id="footer-text">My footer</p>
+            </div>
+            <button onclick="handlebutton()">点击触发ajax</button>
+        </div>
+        <!-- 建立的handlebars模板 -->
+        <script type="text/x-handlebars-template" id="content-template">
+            {{#each this}}
+                <div class="city-info">
+                    <div class="form-line">
+                        <span class="label">{{spell}}</span>
+                        <span class="text">{{name}}</span>
+                    </div>
+                </div>
+            {{/each}}
+        </script>
+        <script src="script.js"></script>
+    </body>
+</html>
+```
+```js
+function handlebutton(){  
+        $.ajax({
+        url     : "http://localhost:8888/airplane", //在服务器中创建了mock文件夹，在里面创建了airplane的模拟数据文件
+        type    : "GET",
+        dataType: "json", 
+        success : function(data){
+            var JsonData=data.cities.A;//提取返回JSON中的指定内容
+            console.log(data.cities.A);
+            var tpl=$("#content-template").html();//获取模板
+            var template=Handlebars.compile(tpl);//预编译模板
+            var html=template(JsonData);//将数据渲染到模板中
+            // $("#content").html(html);
+            content.innerHTML=html; //将渲染后的模板数据插入到html中
+        },
+        error   : function(err){
+            alert(err);
+        }
+    }); 
+}
+```
