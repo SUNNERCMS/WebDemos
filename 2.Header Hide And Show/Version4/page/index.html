@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <title>JS Hide/Show Header&Footer On Scroll</title>
+        <link rel="stylesheet" href="./style/style.css">
+        <link rel="stylesheet" href="./style/iconfont.css">
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
+        <!-- 通过CDN引用的handlebars模板库 -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    </head>
+    <body>
+        <div id="global">
+            <div class="fixedheader">
+                    <span class="iconfont icon-jiantouarrowhead7"></span>
+                    <span class="fixedheaderText">
+                        <span>北京<span class="iconfont icon-tubiaozhizuomoban"></span>上海</span>
+                    </span>
+                    <span class="iconfont icon-sousuo"></span>
+            </div>
+            <div class="header" >
+                <div class="headerText">
+                    <div class="date">02-05</div>
+                    <div class="week">今天</div>
+                    <div class="date">￥243</div>
+                </div>
+                <div class="headerText">
+                    <div class="date">02-06</div>
+                    <div class="week">星期二</div>
+                    <div class="date">￥647</div>
+                </div>
+                <div class="headerText">
+                    <div class="date">02-07</div>
+                    <div class="week">星期三</div>
+                    <div class="date">￥937</div>
+                </div>
+                <div class="headerText">
+                    <div class="date">02-08</div>
+                    <div class="week">星期四</div>
+                    <div class="date">￥563</div>
+                </div>
+                <div class="headerText">
+                    <div class="date">02-08</div>
+                    <div class="week">星期五</div>
+                    <div class="date">￥375</div>
+                </div>
+                <div class="headerText">
+                    <div class="iconfont icon-rili"></div>
+                    <div class="date">更多日期</div>
+                </div>
+            </div>
+            <div id="content">
+                <!-- 填充handlebars模板内容 -->
+            </div>
+            <div class="footer">
+                <div class="footerText">
+                    <div class="iconfont icon-filter"></div>
+                    <div class="date">筛选</div>
+                </div>
+                <div class="footerText">
+                    <div class="iconfont icon-paixu"></div>
+                    <div class="date">推荐排序</div>
+                </div>
+                <div class="footerText">
+                    <div class="iconfont icon-shijian"></div>
+                    <div class="date">时间</div>
+                </div>
+                <div class="footerText">
+                    <div class="iconfont icon-jiage"></div>
+                    <div class="date">价格</div>
+                </div>
+            </div>
+        </div>
+        <!-- 建立的handlebars模板 -->
+        <script type="text/x-handlebars-template" id="content-template">
+            {{#each this}}
+                <div class="eachAirInfo">
+                    <div class="airInfo">
+                        <div class="start">
+                            <p class="startTime">{{startTime}}</p>
+                            <p class="startAddress">{{startAddress}}</p>
+                        </div>
+                        <div class="iconfont icon-straight"></div>
+                        <div class="finsh">
+                            <p class="finshTime">{{finshTime}}</p>
+                            <p class="finshAddress">{{finshAddress}}</p>
+                        </div>    
+                        <div class="airPrice">
+                            <p class="airPriceNow">￥{{airPriceNow}}</p>
+                            <p class="disCount">{{disCount}}</p>
+                        </div>                  
+                    </div>
+                    <div class="airDetail">{{airDetail}}</div>
+                </div>
+            {{/each}}
+        </script>
+        <script src="script.js"></script>
+    </body>
+</html>
+<!-- #each this，表示遍历当前对象。 -->

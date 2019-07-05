@@ -1,0 +1,137 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f0f0f0;
+}
+#global {
+    min-width: 100%;
+    min-height: 100%;
+}
+.fixedheader{
+    position:fixed;
+    top:0px;
+    text-align:center;
+    color:whitesmoke;
+    line-height: 100px;
+    font-size:50px;
+    width: 100%;
+    height: 100px;
+    background-color:rgb(55, 163, 199);
+    z-index: 4;
+
+}
+.header,.footer{
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 150px;
+    background-color:rgb(55, 163, 199);
+    z-index: 3;
+    color:whitesmoke;
+}
+.header {
+    top:100px;
+    transition:top 45ms linear;
+    font-size:20px;
+}
+.header-actived{
+    top:-150px;
+}
+.footer{
+    bottom:0px;
+    transition:bottom 45ms linear;
+}
+.footer-actived{
+    bottom:-150px;
+}
+
+.headerText{
+    float:left;
+    width:15%;
+    height:90%;
+    margin-left:12px;
+    margin-top:5px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+}
+.headerText:last-child{
+    border-left:2px solid white;
+}
+.headerText:last-child .icon-rili{
+    font-size: 60px;
+}
+
+.footerText{
+    float:left;
+    width:24%;
+    height:90%;
+    margin-left:5px;
+    margin-top:5px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-size:30px;
+}
+.fixedheader .iconfont,.footerText .iconfont{
+    font-size: 45px;
+}
+.fixedheader .icon-jiantouarrowhead7{
+    float:left;
+    margin-left: 30px;
+}
+.fixedheader .icon-sousuo{
+    float:right;
+    margin-right: 30px;
+}
+.eachAirInfo{
+    position: relative;
+    top:250px;
+    border-bottom: 1px solid rgb(216, 207, 207);
+    padding: 10px;
+}
+.eachAirInfo .airInfo{
+    overflow:hidden;/*清除浮动*/
+}
+.eachAirInfo .airInfo div {
+    float:left;
+    margin-left:60px;
+    height:100px;
+    padding:10px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.eachAirInfo .airInfo div:last-child {
+    float:right;
+    margin-right:40px;
+}
+.startTime,.finshTime,.airPriceNow{
+    font-size: 50px;
+}
+.airPriceNow{
+    color:orange;
+}
+.iconfont.icon-straight{
+    font-size: 5px;
+}
+.startAddress,.finshAddress,.disCount{
+    font-size: 30px;
+    color:gray;
+}
+.eachAirInfo .airDetail{
+    margin-left:50px;
+    font-size: 10px;
+    color:gray;
+}
+
+
+
