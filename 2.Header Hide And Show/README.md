@@ -9,5 +9,5 @@
 ![](https://github.com/SUNNERCMS/WebDemos/blob/master/2.Header%20Hide%20And%20Show/Version3/show.gif)  
 #### version4
 该版本完成了作业一的要求  
-![](https://github.com/SUNNERCMS/WebDemos/blob/master/2.Header%20Hide%20And%20Show/Version3/show.gif)  
+![](https://github.com/SUNNERCMS/WebDemos/blob/master/2.Header%20Hide%20And%20Show/Version4/show.gif)  
 
