@@ -1,0 +1,106 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+
+  }
+.container {
+    font-family: Arial, Helvetica, sans-serif;
+    position:relative;
+    background-color: #fafafa;
+    margin: 60px 25%;
+    padding: 40px 30px 60px 30px;
+    height: 100%;
+    border-radius: 5px;
+    overflow:auto;
+    min-width: 600px;
+  }
+input{
+	border-radius: 5px;
+    vertical-align: middle;
+    border: none;
+    height: 30px;
+    line-height: 30px;
+	font-size: 16px;
+  }
+input[type="text"] {
+	width: 50%;
+    padding: 0 10px;
+    outline:none;
+	border: 1px #ccc solid;
+    box-shadow: 0 0 10px #ccc;
+}
+input[type="button"]{
+	background-color: rgb(24, 129, 153);
+	width: 60px;
+    color: #fff;
+    margin-left:50px;
+    outline: none;
+}
+.contentHeader{
+    display:flex;
+    font-size: 14px;
+    font-weight: bold;
+    height:40px;
+    line-height: 40px;
+    background-color:rgb(230, 227, 227);
+    margin-top:20px;
+    border-radius: 5px;
+}
+.contentHeader span,table tr td{
+    display: inline-block;
+    width:100px;
+    /* margin-right:5%; */
+    text-align: center;
+    /* border:1px solid red; */
+
+}
+table tr td:nth-child(2){
+    margin-left:2%;
+}
+.contentHeader span:nth-child(2){
+    margin-left:15%;
+}
+
+table {
+    margin:0px;
+	text-align: left;
+    padding-left:10px;
+    padding:0px;
+    margin-bottom: 10px;
+  /*padding:0px去掉列表标记后，让li元素靠左  */
+  
+}
+table tr {
+    display:flex;
+    font-size: 14px;
+    list-style: none;
+    line-height: 45px;
+    border-bottom: 1px rgb(209, 208, 208) solid;
+  }
+table tr td:first-child{
+    color:deepskyblue;
+    width:180px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+footer{
+    display: flex;
+    justify-content: flex-end;
+}
+footer button{
+    width:25px;
+    height: 25px;
+    margin-left:10px;
+    border-radius:5px;
+    border:1px solid rgb(209, 208, 208);
+    background-color: white;
+    /* outline: none; */
+}
+footer button:nth-child(2){
+    background-color:deepskyblue;
+    color: #fff;
+    outline: none;
+}
